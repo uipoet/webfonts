@@ -40,12 +40,15 @@ Dependencies
 ------------
 
 [Node.js](http://nodejs.org/)
+
 [Java](http://www.java.com/)
 
 Included Libraries
 ------------------
 [sfnt2woff](http://people.mozilla.org/~jkew/woff/)
+
 [ttf2eot](http://code.google.com/p/ttf2eot/)
+
 [batik-ttf2svg](http://xmlgraphics.apache.org/batik/tools/font-converter.html)
 
 
