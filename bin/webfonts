@@ -5,7 +5,7 @@
   See README.md for License
 */
 
-var version = 'webfonts 0.1',
+var version = 'webfonts 0.1.0',
   help = [
     '',
     'Usage: webfonts <path> [options]',
