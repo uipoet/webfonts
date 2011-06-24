@@ -6,12 +6,12 @@ Create fonts for web browsers.
 Installation
 ------------
 
-		npm install webfonts
+	npm install webfonts
 
 Usage
 -----
 
-		webfonts -h
+	webfonts -h
 
 About
 -----
@@ -25,17 +25,16 @@ By default the web fonts will be generated into the original fonts directory. Yo
 Recommended CSS for Embedding
 -----------------------------
 
-		@font-face {
-		  font-family: '<Font Name>';
-		  src: url('fonts/<fontname>.eot');
-		  src: url('fonts/<fontname>.eot?iefix') format('eot'),
-		    url('fonts/<fontname>.woff') format('woff'),
-		    url('fonts/<fontname>.ttf') format('truetype'),
-		    url('fonts/<fontname>.svg#<fontname>') format('svg');
-		  font-style: normal;
-		  font-weight: normal;
-		}
-
+	@font-face {
+	  font-family: '<Font Name>';
+	  src: url('fonts/<fontname>.eot');
+	  src: url('fonts/<fontname>.eot?iefix') format('eot'),
+	    url('fonts/<fontname>.woff') format('woff'),
+	    url('fonts/<fontname>.ttf') format('truetype'),
+	    url('fonts/<fontname>.svg#<fontname>') format('svg');
+	  font-style: normal;
+	  font-weight: normal;
+	}
 
 Dependencies
 ------------
