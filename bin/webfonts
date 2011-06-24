@@ -1,0 +1,128 @@
+#!/usr/bin/env node
+
+/*
+  Copyright 2011 Jamie Hoover
+  See README.md for License
+*/
+
+var version = 'webfonts 0.1',
+  help = [
+    '',
+    'Usage: webfonts <path> [options]',
+    '',
+    '<path>  Input directory with TrueType fonts, defaults to current',
+    '',
+    'Options:',
+    '',
+    '  -h, --help           Display help information',
+    '  -o, --output <path>  Output directory, if different than input',
+    '  -v, --version        Display program version',
+    ''
+  ].join('\n'),
+  options = {
+    in: '.'
+  },
+  args = process.argv.slice(2),
+  fs = require('fs'),
+  exec = require('child_process').exec,
+  ttfs = [],
+  arg,
+  ansiColors = {
+//  'black': 30, 'yellow': 33, 'blue': 34, 'magenta': 35, 'white': 37
+    'red': 31,
+    'green': 32,
+    'cyan': 36
+  },
+  color = function(color, str) {
+    if(!color) return str;
+    return '\033[' + ansiColors[color] + 'm' + str + '\033[0m';
+  };
+
+while (args.length) {
+  arg = args.shift();
+  switch (arg) {
+    case '-h':
+    case '--help':
+    case 'help':
+      console.log(help);
+      process.exit();
+      break;
+    case '-v':
+    case '--version':
+      console.log(version);
+      process.exit();
+      break;
+    case '-o':
+    case '--out':
+      if (args.length) {
+        options.out = args.shift();
+        break;
+      }
+      console.error(color('red', 'Path required after -o, --output'));
+      process.exit(1);
+    default:
+      if (~arg.indexOf('/')) {
+        options.in = arg;
+        options.out = arg;
+      }
+  }
+}
+
+function create(type, ttf, fontName) {
+  var command;
+  switch (type) {
+    case 'svg':
+      command = 'java -jar ' + __dirname + '/../batik-ttf2svg.jar ' + ttf + ' -o ' + options.out + '/' + fontName + '.svg -id ' + fontName;
+      break;
+    case 'eot':
+      command = __dirname + '/ttf2eot ' + ttf + ' > ' + options.out + '/' + fontName + '.eot';
+      break;
+    case 'woff':
+      command = __dirname + '/sfnt2woff ' + ttf;
+      break;
+    default: console.error(color('red', 'type [svg|eot|woff] argument required'));
+  }
+  exec(command, function (err) {
+    if (err) {
+      console.error('\033[31m%s\033[0m', type + ' error: ' + err);
+    }
+    else {
+      console.log(color('green', 'Created ' + options.out + '/' + fontName + '.' + type));
+    }
+  });
+}
+
+fs.readdir(options.in, function (err, fonts) {
+  if (err) throw err;
+  fonts.forEach(function (font) {
+    if(font.indexOf('.ttf') > -1) {
+      ttfs.push(font);
+      console.log('Found   ' + options.in + font);
+    }
+  });
+  if (ttfs.length) {
+    ttfs.forEach(function (font) {
+      var ttf = options.in + '/' + font,
+        fontName = font.split('.')[0];
+
+      if (options.in !== options.out) {
+        exec('mkdir -p ' + options.out + '; cp ' + ttf + ' ' + options.out + '/', function () {
+          ttf = options.out + '/' + font;
+          console.log(color('cyan', 'Copied  ' + ttf));
+          create('svg', ttf, fontName);
+          create('eot', ttf, fontName);
+          create('woff', ttf, fontName);
+        });
+      }
+      else {
+        create('svg', ttf, fontName);
+        create('eot', ttf, fontName);
+        create('woff', ttf, fontName);
+      }
+
+    });
+  }
+  else {
+    console.error(color('red', 'No TrueType fonts found in ' + options.in));
+  }
+});

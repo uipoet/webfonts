@@ -1,0 +1,14 @@
+{
+  "name": "ninjaui.com",
+  "version": "0.1",
+  "description": "ttf to woff, eot and svg generator",
+  "keywords": ["web", "font", "webfont", "ttf", "woff", "eot", "svg", "generator", "css", "truetype"],
+  "author": "Jamie Hoover <dont.tase@me.com>",
+  "homepage": "https://github.com/uipoet/webfonts",
+  "bin": {
+    "webfonts": "./bin/webfonts"
+  },
+  "engines": {
+    "node": "~0.4"
+  }
+}
