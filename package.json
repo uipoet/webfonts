@@ -1,6 +1,6 @@
 {
   "name": "webfonts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ttf to woff, eot and svg generator",
   "keywords": ["web", "font", "webfont", "ttf", "woff", "eot", "svg", "generator", "css", "truetype"],
   "author": "Jamie Hoover <dont.tase@me.com>",

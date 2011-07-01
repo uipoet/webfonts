@@ -5,7 +5,7 @@
   See README.md for License
 */
 
-var version = 'webfonts 0.1.0',
+var version = 'webfonts 0.1.1',
   help = [
     '',
     'Usage: webfonts <path> [options]',
@@ -20,7 +20,8 @@ var version = 'webfonts 0.1.0',
     ''
   ].join('\n'),
   options = {
-    in: '.'
+    in: '.',
+    out: '.'
   },
   args = process.argv.slice(2),
   fs = require('fs'),
