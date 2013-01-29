@@ -5,6 +5,10 @@
   "keywords": ["web", "font", "webfont", "ttf", "woff", "eot", "svg", "generator", "css", "truetype"],
   "author": "Jamie Hoover <dont.tase@me.com>",
   "homepage": "https://github.com/uipoet/webfonts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uipoet/webfonts"
+  },
   "bin": {
     "webfonts": "./bin/webfonts"
   },
