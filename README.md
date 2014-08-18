@@ -11,7 +11,17 @@ Installation
 Usage
 -----
 
-	webfonts -h
+`webfonts <path> [options]`
+
+`<path>`: Input directory with TrueType fonts, defaults to current
+
+Options:
+
+| Short | Long | Description |
+| --- | --- | --- |
+| `-h` | `--help` | Display help information |
+| `-o` | `--output <path>` | Output directory, if different than input |
+| `-v` | `--version` | Display program version |
 
 About
 -----
